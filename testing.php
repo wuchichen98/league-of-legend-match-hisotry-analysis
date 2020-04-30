@@ -45,7 +45,7 @@ $status ='';
 
 
 
-// preview($x);
+//preview($x);
 
 // $storeWinLoss = array
 //   (
@@ -73,11 +73,11 @@ $status ='';
 
 //     }
 
-    // echo count($storeWinLoss[2]);
-    // echo "\n";
-    // echo count($storeWinLoss[3]);
-    // $countt = count($storeWinLoss[2]) + count($storeWinLoss[3]);
-    // echo 'win rate '. count($storeWinLoss[2])/ $countt * 100 . "%";
+//     echo count($storeWinLoss[2]);
+//     echo "\n";
+//     echo count($storeWinLoss[3]);
+//     $countt = count($storeWinLoss[2]) + count($storeWinLoss[3]);
+//     echo 'win rate '. count($storeWinLoss[2])/ $countt * 100 . "%";
 //preview($p['teams']);
 //get win or lose
 

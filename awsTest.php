@@ -36,43 +36,44 @@ $dynamodb = $sdk->createDynamoDb();
 $marshaler = new Marshaler();
 
 
-$getInfo= calcWIn('D7ohUVOVq1qJa7Y3X_6hmcT9LYcQ8c9-WGqjbqWbwhatwqA');
+ $getInfo= calcWIn('D7ohUVOVq1qJa7Y3X_6hmcT9LYcQ8c9-WGqjbqWbwhatwqA');
 
 
-//write in all the element
-//  for ($i = 0; $i < 20; $i++) {
-
-// //$tableName = 'MatchingDetails';
-
-// $year = 2015;
-// $title = 'The Big New Movie';
+// //write in all the element
+ for ($i = 0; $i < 10; $i++) {
 
 // $item = $marshaler->marshalJson('
 //     {
-//         "gameId": ' . $getInfo[0][$i] . ',
-//         "champion": ' . $getInfo[1][$i] . ',
-//         "Win": "' . $getInfo[2][$i] . '"
+//         "gameId": ' . 123 . ',
+//         "champion": ' . "xx" . ',
+//         "Win": "' . "xxx" . '"
        
     
 //     }
 // ');
 
-// $params = [
-//     'TableName' => 'MatchingDetails',
-//     'Item' => $item
-// ];
+$json = json_encode([
+    'gameId' => $getInfo[0][$i],
+    'champion' => $getInfo[1][$i],
+    'Win' => $getInfo[2][$i]
+]);
+
+$params = [
+    'TableName' => 'MatchingDetails',
+    'Item' => $marshaler->marshalJson($json)
+];
 
 
-// try {
-//     $result = $dynamodb->putItem($params);
-//     echo "Added item----";
+try {
+    $result = $dynamodb->putItem($params);
+    echo "Added item----";
 
-// } catch (DynamoDbException $e) {
-//     echo "Unable to add item:\n";
-//     echo $e->getMessage() . "\n";
-// }
+} catch (DynamoDbException $e) {
+    echo "Unable to add item:\n";
+    echo $e->getMessage() . "\n";
+}
 
-//  }
+ }
 
 
 $paramss = [
@@ -94,8 +95,9 @@ $paramss = [
         ],
         [
             'AttributeName' => 'champion',
-            'AttributeType' => 'S'
+            'AttributeType' => 'N'
         ],
+
   
 
     ],
@@ -104,16 +106,6 @@ $paramss = [
         'WriteCapacityUnits' => 20
     ]
 ];
-
-// try {
-//     $result = $dynamodb->putItem($params);
-//     echo "Added item: $year - $title\n";
-
-// } catch (DynamoDbException $e) {
-//     echo "Unable to add item:\n";
-//     echo $e->getMessage() . "\n";
-// }
-
 
 //create tables
 // try {
@@ -125,20 +117,12 @@ $paramss = [
 //     echo "Unable to create table:\n";
 //     echo $e->getMessage() . "\n";
 // }
-// $key = $marshaler->marshalJson('
-//     {
-//         "gameId": ' . $year . ', 
-//         "champion": ' . $title . ',
-//         "Win": "' . $title . '"
-//     }
-// ');
 
 
-
-$params = [
-    'TableName' => 'MatchingDetails'
+// $params = [
+//     'TableName' => 'MatchingDetails'
     
-];
+// ];
 
 
 // //read
@@ -153,28 +137,28 @@ $params = [
 // }
 
 //retrive all the element from the table
-try {
-    while (true) {
-        $result = $dynamodb->scan($params);
+// try {
+//     while (true) {
+//         $result = $dynamodb->scan($params);
 
-        foreach ($result['Items'] as $i) {
-            $movie = $marshaler->unmarshalItem($i);
-            echo $movie['gameId'].':'.$movie['champion'];
-            echo "<br>";
+//         foreach ($result['Items'] as $i) {
+//             $movie = $marshaler->unmarshalItem($i);
+//             echo $movie['gameId'].':'.$movie['champion'];
+//             echo "<br>";
          
-        }
+//         }
 
-        if (isset($result['LastEvaluatedKey'])) {
-            $params['ExclusiveStartKey'] = $result['LastEvaluatedKey'];
-        } else {
-            break;
-        }
-    }
+//         if (isset($result['LastEvaluatedKey'])) {
+//             $params['ExclusiveStartKey'] = $result['LastEvaluatedKey'];
+//         } else {
+//             break;
+//         }
+//     }
 
-} catch (DynamoDbException $e) {
-    echo "Unable to scan:\n";
-    echo $e->getMessage() . "\n";
-}
+// } catch (DynamoDbException $e) {
+//     echo "Unable to scan:\n";
+//     echo $e->getMessage() . "\n";
+// }
 
 
 ?>

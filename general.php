@@ -6,7 +6,7 @@ require_once('testing.php');
 
 
 $cool = calcWIn('D7ohUVOVq1qJa7Y3X_6hmcT9LYcQ8c9-WGqjbqWbwhatwqA');
-preview($cool[0]);
+preview($cool[0][1]);
 
 
 
