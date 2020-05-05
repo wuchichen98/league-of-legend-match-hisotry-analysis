@@ -13,6 +13,8 @@ include_once('../FileSystemCache.php');
 // $xx = getSummoner('slydeer');
 // preview($xx);
 
+
+
 function getApiByReg($string){
 
     $api = new riotapi($string, new FileSystemCache('../cache/'));
@@ -20,7 +22,7 @@ function getApiByReg($string){
     return $api;
 
 }
-
+//might not need
 function getSummoner($name){
     global $api;
     $info;
@@ -38,15 +40,22 @@ function calcWIn($string){
       //champid
       array(),
       //win
+      array(),
+      //role
+      array(),
+      //lane
       array()
+
     );
   
-  for ($i = 0; $i < 20; $i++) {
+  for ($i = 0; $i < 10; $i++) {
     //  preview($x['matches'][$i]);
       //preview($x['matches'][0]['gameId']);
       array_push($storeWinLoss[0], $x['matches'][$i]['gameId'] );
       array_push($storeWinLoss[1], $x['matches'][$i]['champion'] );
       array_push($storeWinLoss[2],checkWin($storeWinLoss[0][$i],$storeWinLoss[1][$i]));
+      array_push($storeWinLoss[3],$x['matches'][$i]['role']);
+      array_push($storeWinLoss[4],$x['matches'][$i]['lane']);
 
     //   if(strcasecmp(checkWin($storeWinLoss[0][$i],$storeWinLoss[1][$i]), "Win") ){
     //       array_push($storeWinLoss[2],'Win');
