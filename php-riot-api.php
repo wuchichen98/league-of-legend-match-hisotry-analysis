@@ -445,6 +445,7 @@ class riotapi {
 		return array_merge($results);
 	}
 	
+	
 	//creates a full URL you can query on the API
 	private function format_url($call){
 		return str_replace('{platform}', $this->PLATFORM, $call);
