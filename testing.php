@@ -85,7 +85,6 @@ $status ='';
  //echo checkWin(298815922,161);
 // echo checkWin(298815922,64);
 
-
 // }
    
 // try {
@@ -104,6 +103,23 @@ $status ='';
 //} catch(Exception $e) {
 //    echo "Error: " . $e->getMessage();
 //};
+
+// $get_data = testss();
+// $response = json_decode($get_data, true);
+// preview($response);
+
+// function testss(){
+$response = '';
+$call = "https://e3a8l7y323.execute-api.us-east-1.amazonaws.com/Test/lambdatest";
+
+ $curl = curl_init($call);
+ curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+ curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+
+preview(curl_exec($curl));
+curl_close($curl);
+//}
+
 function calcWIn($string){
     global $api;
     $x = $api -> getMatchList($string);
