@@ -197,14 +197,15 @@ $params = [
 try {
     while (true) {
         $result = $dynamodb->scan($params);
-
+        $info = array();
         foreach ($result['Items'] as $i) {
-            $info = $marshaler->unmarshalItem($i);
-            preview($info);
+            $info[] = $marshaler->unmarshalItem($i);
+            
+           // preview($info);
             //echo $movie['gameId'].':'.$movie['champion'];
             //echo "<br>"; 
         }
-
+        return $info;
         if (isset($result['LastEvaluatedKey'])) {
             $params['ExclusiveStartKey'] = $result['LastEvaluatedKey'];
         } else {
