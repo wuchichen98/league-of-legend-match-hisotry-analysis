@@ -21,8 +21,9 @@ $sdk = new Aws\Sdk([
 $dynamodb = $sdk->createDynamoDb();
 
 $marshaler = new Marshaler();
+  //$api = new riotapi('oc1', new FileSystemCache('../cache/'));
 
-// calcWinTb($api->getSummonerByName('slydeer')['accountId']);
+ // calcWinTb($api->getSummonerByName('slydeer')['accountId']);
 
 // $api = new riotapi('oc1', new FileSystemCache('../cache/'));
 // preview($api->getSummonerByName('slydeer'));
@@ -47,7 +48,11 @@ $eav = $marshaler->marshalJson('
         ":p": '.$getInfo[1][$i].',
         ":a": "'.$getInfo[2][$i].'",
         ":b": "'.$getInfo[3][$i].'",
-        ":c": "'.$getInfo[4][$i].'"
+        ":c": "'.$getInfo[4][$i].'",
+        ":d": '.$getInfo[5][$i].',
+        ":e": '.$getInfo[6][$i].',
+        ":f": ['.$getInfo[7][$i].','.$getInfo[8][$i].','.$getInfo[9][$i].']
+
     }
 ');
 $json = json_encode([
@@ -60,7 +65,7 @@ $json = json_encode([
 $params = [
     'TableName' => 'MatchingDetails',
     'Key' => $key,
-    'UpdateExpression' =>'set gameId = :r, champion=:p, Win=:a, Prole=:b, Plane=:c',
+    'UpdateExpression' =>'set gameId = :r, champion=:p, Win=:a, Prole=:b, Plane=:c, spella=:d, spellb=:e,kill=:f',
     'ExpressionAttributeValues'=> $eav,
     'ReturnValues' => 'UPDATED_NEW'
 ];
