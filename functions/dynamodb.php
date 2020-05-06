@@ -2,7 +2,7 @@
 
 require_once('RIOTfunc.php');
 
-require '../vendor/autoload.php';
+
 //require 'aws.phar';
 
 date_default_timezone_set('UTC');
@@ -129,6 +129,9 @@ try {
   
 }
 
+
+
+
 // $paramss = [
 //     'TableName' => 'MatchingDetails',
 //     'KeySchema' => [
@@ -184,6 +187,39 @@ try {
 //     echo "Unable to get item:\n";
 //     echo $e->getMessage() . "\n";
 // }
+
+function getCommenttb($id,$comment,$name,$time){ 
+    global $dynamodb;
+    global $marshaler;
+
+
+    $item = $marshaler->marshalJson('
+    {
+        "id": ' . $id . ',
+        "comment": "' . $comment . '",
+        "name": "' . $name . '",
+        "time": "'.$time.'"
+    
+    }
+');
+
+$params = [
+    'TableName' => 'books',
+    'Item' => $item
+];
+
+
+try {
+    $result = $dynamodb->putItem($params);
+
+} catch (DynamoDbException $e) {
+    echo "Unable to add item:\n";
+    echo $e->getMessage() . "\n";
+}
+
+}
+
+
 
 //retrive all the element from the table
 

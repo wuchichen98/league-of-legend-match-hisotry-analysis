@@ -1,9 +1,6 @@
 <?php 
 
-include_once ('./rds.php');
-
-session_start();
-
+include_once ('functions/rds.php');
 
 if (array_key_exists('username', $_POST) && array_key_exists('password', $_POST)) {
     $username = $_POST['username'];
@@ -13,15 +10,14 @@ if (array_key_exists('username', $_POST) && array_key_exists('password', $_POST)
 
 
     if (insertRow($username,$password, $fname,$lname)===true){
-    echo 'reg success';
+	echo 'reg success';
+	echo '<script>window.location.href="./login.php"</script>';
     }else{
     echo'username exists please try again';
     }
 
 
 }
-
-
 
 
 

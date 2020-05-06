@@ -1,7 +1,5 @@
 <?php
 
-include_once('../php-riot-api.php');
-include_once('../FileSystemCache.php');
 
 //  $api = new riotapi('oc1', new FileSystemCache('../cache/'));
 //  //preview($api->getMatch(302912924));

@@ -2,14 +2,15 @@
 
 // require_once('testing.php');
 
-require '../vendor/autoload.php';
+// require_once('../vendor/autoload.php');
+
 use Aws\Rds\RdsClient;
 
-$client = RdsClient::factory(array(
-    'profile' => 'default',
-    'region'  => 'us-east-1',
-    'version'  => 'latest'
-));
+// $client = RdsClient::factory(array(
+//     'profile' => 'default',
+//     'region'  => 'us-east-1',
+//     'version'  => 'latest'
+// ));
 //end point database-1.cciz8vg9jp0f.us-east-1.rds.amazonaws.com
 //admin jc2548461
 define("HOST", "cloudtest.cciz8vg9jp0f.us-east-1.rds.amazonaws.com");

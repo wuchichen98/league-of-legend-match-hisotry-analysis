@@ -1,6 +1,6 @@
 <?php 
 
-include_once ('./rds.php');
+include_once ('./functions/rds.php');
 
 session_start();
 
@@ -14,11 +14,16 @@ if (array_key_exists('username', $_POST) && array_key_exists('password', $_POST)
 
     if ($info!=null){
     echo 'login success';
-    print_r($info);
+
     }else{
     echo "login fail";
-    }
-
+	}
+	$_SESSION['fname']=$info[0]['firstname'];
+	if($_SESSION['fname']!= null){
+		echo "redirecting...............";
+		echo '<script>window.location.href="./commentBook.php"</script>';
+	}
+	
 }
 
 

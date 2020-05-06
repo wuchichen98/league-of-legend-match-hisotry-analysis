@@ -1,9 +1,11 @@
 <?php
 
 session_start();
-include_once('./RIOTfunc.php');
-include_once('./dynamodb.php');
-
+require './vendor/autoload.php';
+include_once('./php-riot-api.php');
+include_once('./FileSystemCache.php');
+include_once('functions/RIOTfunc.php');
+include_once('functions/dynamodb.php');
 
 if (array_key_exists('username', $_POST) && array_key_exists('region', $_POST)) {
 $username = $_POST['username'];
@@ -15,7 +17,7 @@ $api = getApiByReg($region);
  //preview($api->getSummonerByName($username));
  calcWinTb($api->getSummonerByName($username)['accountId']);
  updateUserinfo($api->getSummonerByName($username));
- echo '<script>window.location.href="./testing2.php"</script>';
+ echo '<script>window.location.href="./viewMatch.php"</script>';
 }
 
 

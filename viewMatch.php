@@ -1,6 +1,11 @@
 <?php
 session_start();
-include_once('./dynamodb.php');
+require './vendor/autoload.php';
+include_once('./php-riot-api.php');
+include_once('./FileSystemCache.php');
+include_once('functions/RIOTfunc.php');
+include_once('functions/dynamodb.php');
+
 
 $getTb =getTable('MatchingDetails');
 $x= calcRates($getTb);
@@ -11,6 +16,7 @@ $x= calcRates($getTb);
 //         $count ++;
 //     }
 // }
+print_r($getTb);
 echo "Win Rate of top 10 matches is: ", $x,"%";
 //preview(getTable('MatchingDetails'));
 // echo"------------------------------";
