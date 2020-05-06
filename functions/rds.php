@@ -1,10 +1,8 @@
 <?php
 
-
-
 // require_once('testing.php');
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 use Aws\Rds\RdsClient;
 
 $client = RdsClient::factory(array(
@@ -16,7 +14,7 @@ $client = RdsClient::factory(array(
 //admin jc2548461
 define("HOST", "cloudtest.cciz8vg9jp0f.us-east-1.rds.amazonaws.com");
 define("DBUSER", "root");
-define("PASS", "12345678");
+define("PASS", "123456789");
 define("DB", "cloudtest");
 define("PORT", "3306");
 
@@ -24,7 +22,6 @@ $link=mysqli_connect(HOST,DBUSER,PASS,DB,PORT);
 if ($link->connect_error) {
     die("Connection failed: " . $link->connect_error);
 } 
-
 //create table in user schema
 // $sql = "CREATE TABLE user.user (
 //     userid INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
@@ -34,14 +31,45 @@ if ($link->connect_error) {
 //     password VARCHAR(30) NOT NULL,
 //     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 //     )";
-
+$a='abc12333333';
+$b='wsa';
+$c='sssss';
+$d='ac2222';
 
 //insert data to the table
 // $sql = "INSERT INTO user.user (username, firstname, lastname, password)
-//  VALUES ('abc123555', 'johnc', 'chenc', 'abc12345655')";
+//  VALUES ('adc222222', 'johnc', 'chenc', 'abc12345655')";
 
-//  $link->query($sql);
-//$query = mysqli_query($link, $sql);
+// if (insertRow('ass122xasd','jc','ls','asxxx222')===true){
+//     echo 'yes';
+// }else{
+//     echo'false';
+// }
+function insertRow($a,$b,$c,$d){
+global $link;
+$sql = "SELECT username,password FROM user.user WHERE username = '$a'";
+$query = $link->query($sql);
+if(mysqli_num_rows($query)){
+    
+    return false;
+}else{
+
+ $sql = "INSERT INTO user.user (username, firstname, lastname, password)
+VALUES ('$a', '$b', '$c', '$d')";
+if ($link->query($sql) === TRUE) {
+ 
+    return true;
+   
+} else {
+    echo "error: " . $link->error;
+}
+    
+    }
+
+}
+
+// $link->query($sql);
+// $query = mysqli_query($link, $sql);
 
 
 // $result_can = mysqli_query($link, $query);
@@ -55,18 +83,24 @@ if ($link->connect_error) {
 
 
 //get matching username and password
-$sql = "SELECT userid,username,firstname,lastname,password FROM user.user WHERE username = 'abc1234' AND password = 'abc123456789'";
+// $x= matchPass('abc123','abc123456');
+// print_r ($x[0]);
+
+function matchPass($username,$password){
+global $link;
+$arr = array();
+$sql = "SELECT userid,username,firstname,lastname,password FROM user.user WHERE username = '$username' AND password = '$password'";
 $result = $link->query($sql);
 while($row = $result->fetch_assoc()) {
-print_r($row);
+//print_r($row);
+array_push($arr,$row);
+}
+return $arr;
+
 }
 
 
-// if ($link->query($sql) === TRUE) {
-//     echo "success";
-// } else {
-//     echo "error: " . $link->error;
-// }
+
 
 
 $link->close();
