@@ -13,7 +13,8 @@ if (array_key_exists('content', $_POST) && $_SESSION['fname']!=null) {
   $fname = $_SESSION['fname'];
   $time = date('Y-m-d H:i:s',time());
   getCommenttb(count($info)+1,$comment,$_SESSION['fname'],$time);
-
+  //refresh
+  echo "<meta http-equiv='refresh' content='0'>";
 }
 
 
@@ -64,7 +65,7 @@ if (array_key_exists('content', $_POST) && $_SESSION['fname']!=null) {
         <div class="panel-body" style="padding:30px; width: 20%">
           <div class="form-group">
             <div class="field field-icon-right">
-              <input type="text" id="content" class="input" name="content" placeholder="留言内容"/>
+              <input type="text" id="content" class="input" name="content" placeholder="please enter content"/>
             </div>
           </div>
           <div class="form-group">
