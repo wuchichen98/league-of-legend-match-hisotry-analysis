@@ -1,6 +1,4 @@
 <?php
-include_once('../php-riot-api.php');
-include_once('../FileSystemCache.php');
 
 date_default_timezone_set('UTC');
 use Aws\DynamoDb\SessionHandler;
