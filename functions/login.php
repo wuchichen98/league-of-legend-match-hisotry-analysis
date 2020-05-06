@@ -4,24 +4,22 @@ include_once ('./rds.php');
 
 session_start();
 
+$info;
 
 if (array_key_exists('username', $_POST) && array_key_exists('password', $_POST)) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $fname =$_POST['fname'];
-    $lname =$_POST['lname'];
 
+    $info = matchPass($username,$password);
 
-    if (insertRow($username,$password, $fname,$lname)===true){
-    echo 'reg success';
+    if ($info!=null){
+    echo 'login success';
+    print_r($info);
     }else{
-    echo'username exists please try again';
+    echo "login fail";
     }
 
-
 }
-
-
 
 
 
@@ -42,14 +40,6 @@ if (array_key_exists('username', $_POST) && array_key_exists('password', $_POST)
 				<li>
 					<label>Password:</label>
 					<input type="password" name="password" id="password">
-				</li>
-                <li>
-					<label>User Firstname:</label>
-					<input type="text" name="fname" id="fname">
-				</li>
-                <li>
-					<label>User Lastname:</label>
-					<input type="text" name="lname" id="lname">
 				</li>
 				<li>
 					<label></label>

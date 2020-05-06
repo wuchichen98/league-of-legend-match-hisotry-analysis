@@ -57,7 +57,8 @@ if(mysqli_num_rows($query)){
  $sql = "INSERT INTO user.user (username, firstname, lastname, password)
 VALUES ('$a', '$b', '$c', '$d')";
 if ($link->query($sql) === TRUE) {
- 
+
+$link->close();
     return true;
    
 } else {
@@ -65,6 +66,7 @@ if ($link->query($sql) === TRUE) {
 }
     
     }
+    
 
 }
 
@@ -95,6 +97,9 @@ while($row = $result->fetch_assoc()) {
 //print_r($row);
 array_push($arr,$row);
 }
+
+
+$link->close();
 return $arr;
 
 }
@@ -102,8 +107,6 @@ return $arr;
 
 
 
-
-$link->close();
 
 
 
