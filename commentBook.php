@@ -17,8 +17,8 @@ if (array_key_exists('content', $_POST) && $_SESSION['fname']!=null) {
   echo "<meta http-equiv='refresh' content='0'>";
 }
 
-
-
+//could be
+//session_destroy();
 
 
 // print_r($info);
