@@ -120,16 +120,103 @@ nav a:hover, nav a:focus {
   /*鼠标悬停按钮上方，光标成手指样式*/
   cursor: pointer;
 }
-.t{
-  z-index: 1;
-  position: absolute;
-  right: 113px;
-  top: 50%;
-  margin-top: -8px;
-  height: 16px;
-  width: 18px;
-  background: url("images/bd.png");
-  cursor: pointer;
+
+/* login ------------------- */
+.login-body{
+  font-family: 'Open Sans', sans-serif;
+  margin: 0 auto 0 auto;  
+  width:100%; 
+  height:100px;
+  text-align:center;
+}
+
+.box h1{
+  font-size:1.5em;
+  color:#525252;
+}
+
+.box{
+
+  background:white;
+  width:500px;
+  height:300px;
+  border-radius:6px;
+  margin: 100px auto 0 auto;
+  padding:0px 0px 70px 0px;
+  border:rgb(14, 214, 232) 4px solid; 
+}
+
+.email{
+  background:#ecf0f1;
+  border: #ccc 1px solid;
+  border-bottom: #ccc 2px solid;
+  padding: 8px;
+  width:250px;
+  color:#AAAAAA;
+  margin: 10px 10px 10px 10px;
+  font-size:1em;
+  border-radius:4px;
+}
+
+
+.btn{
+  background:#2ecc71;
+  height: 60px;
+  width:130px;
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-right: 5px;
+  color:white;
+  border-radius:4px;
+  border: #27ae60 1px solid;
+  margin-top:20px;
+  margin-bottom:20px;
+  float:left;
+  margin-left:23%;
+  font-weight:800;
+  font-size:0.8em;
+}
+
+.btn:hover{
+  background:#2CC06B; 
+}
+
+#btn2{
+  height: 60px;
+  float:left;
+  background:#3498db;
+  width:130px;  padding-top:5px;
+  padding-bottom:5px;
+  color:white;
+  border-radius:4px;
+  border: #2980b9 1px solid;
+  
+  margin-top:20px;
+  margin-bottom:20px;
+  margin-left:10px;
+  font-weight:800;
+  font-size:0.8em;
+}
+
+#btn2:hover{ 
+background:#3594D2; 
+}
+
+.btn-r{
+  background:#2ecc71;
+  height: 50px;
+  width:130px;
+  padding-bottom:5px;
+  padding-right: 5px;
+  color:white;
+  border-radius:4px;
+  border: #27ae60 1px solid;
+  margin-top:10px;
+  margin-bottom:20px;
+  float:left;
+  margin-left:40%;
+  font-weight:800;
+  font-size:0.8em;
 }
 
 
@@ -144,72 +231,3 @@ nav a:hover, nav a:focus {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-/* Media queries: for different width sizes */
-@media screen and (max-width: 1200px) {
-  .global-container {
-    width: 90%;
-  }
-  #company-introduction {
-    margin: 100px 0;
-    padding: 0.4em;
-  }
-  .slider {
-    float:none;
-    margin: 20px auto;
-  }
-  .text-content {
-    float: none;
-    margin: 0 auto;
-    width: 80%;
-  }
-}
-
-
-
-
-
-
-
-
-@media screen and (max-width: 840px){
-  header .brand {
-    display: block;
-    float: none;
-    margin: 0 auto;
-    text-align: center;
-  }
-  header nav {
-    margin: 0 auto;
-  }
-
-  #company-vision {
-    float: none;
-    text-align: center;
-    margin: 0 auto;
-    width: 100%;
-    margin-top: 50px;
-  }
-  .quote {
-    float: none;
-    width: 70%;
-  }
-
-}
-@media screen and (max-width: 500px){
-  .two-row, .three-row {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 0.5em;
-  }
-}
