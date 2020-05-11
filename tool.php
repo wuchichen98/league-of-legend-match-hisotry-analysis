@@ -22,7 +22,6 @@ $html = <<<"OUTPUT"
           <nav>
             <ul>
               <li><a href="./index.php"><span class="current">Home</span></a></li>
-              <li><a href="./LeaderBoard.php">Leader Board</a></li>
               <li><a href="./champList.php">Champion List</a></li>
               <li><a href="./login.php">Log In</a></li>
               <li><a href="./register.php" class="darken" >Register</a></li>

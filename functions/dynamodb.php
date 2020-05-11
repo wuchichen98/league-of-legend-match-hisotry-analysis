@@ -51,7 +51,7 @@ $eav = $marshaler->marshalJson('
         ":c": "'.$getInfo[4][$i].'",
         ":d": '.$getInfo[5][$i].',
         ":e": '.$getInfo[6][$i].',
-        ":f": ['.$getInfo[7][$i].','.$getInfo[8][$i].','.$getInfo[9][$i].']
+        ":f": "'.$getInfo[7][$i].'/'.$getInfo[8][$i].'/'.$getInfo[9][$i].'"
 
     }
 ');
