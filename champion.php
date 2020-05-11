@@ -16,7 +16,7 @@ include "layout/header.php";
             </div>
 
             <div id ='rightColumn'>
-                <h3>Hikaye</h3>
+                <h3>INFO</h3>
                 <span>$champion[lore]</span>
             </div>
             ";
