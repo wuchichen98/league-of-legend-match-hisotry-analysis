@@ -23,6 +23,7 @@ $html = <<<"OUTPUT"
             <ul>
               <li><a href="./index.php"><span class="current">Home</span></a></li>
               <li><a href="./LeaderBoard.php">Leader Board</a></li>
+              <li><a href="./champList.php">Champion List</a></li>
               <li><a href="./login.php">Log In</a></li>
               <li><a href="./register.php" class="darken" >Register</a></li>
               <li><a href="./commentBook.php" class="darken" >Comment Book</a></li>
@@ -73,26 +74,13 @@ OUTPUT;
 }
 
 function end_module() {
-$html = <<<"OUTPUT"
-    </main>
-      <footer>
-        <div>&copy;<script>document.write(new Date().getFullYear());</script> Jefferson Madrid: s3707189, Wuchi Chen: s3716792.</div>
-        <div>Disclaimer: This website is not a real website and is being developed as part of a School of Science Web Programming course at RMIT University in Melbourne, Australia.</div>
-        <div><button id='toggleWireframeCSS' onclick='toggleWireframe()'>Toggle Wireframe CSS</button></div>
-        <div><a href="services.txt">Spreadsheet of services</a> <a href="orders.txt">Spreadsheet of recent orders</a></div>
-      </footer>
-  </body>
-</html>
-OUTPUT;
-  echo $html;
+  echo '</div>
 
-  echo "<hr>";
-  echo "GET DATA";
-  preShow($_GET);
-  echo "POST DATA";
-  preShow($_POST);
-  echo "SESSION DATA";
-  preShow($_SESSION);
+  <script src="js/jQuery.js"></script>
+  <script src="js/app.js"></script>
+  
+  </body>
+  </html>';
 }
 
 function services_module() {
