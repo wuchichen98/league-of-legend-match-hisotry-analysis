@@ -9,11 +9,12 @@ include_once('functions/dynamodb.php');
 include_once('tool.php');
 index_top_module('Welcome');
 if (array_key_exists('username', $_POST) && array_key_exists('region', $_POST)) {
+
 $username = $_POST['username'];
 $region = $_POST['region'];
 $_SESSION['region'] = $region;
 $_SESSION["username"] = $username;
-echo($username.$region);
+//echo($username."xxxxx".$region);
 $api = getApiByReg($region);
 //  //updateUserinfo($api->getSummonerByName($username));
 //  //preview($api->getSummonerByName($username));
@@ -31,7 +32,7 @@ $api = getApiByReg($region);
 <img class="logo" src="./img/logo.png">
 <span class="search">
 	<form method="post">
-<input type="text" onfocus="this.value=''" onblur="this.value='Please enter summoner name'"name='username' id='username'class="search_bar">
+<input type="text" onfocus="this.value=''" value="Please enter summoner name"name='username' id='username'class="search_bar">
 <select class='search_dro'id="region" name='region'>
   <option value="oc1" id="oc1" name='oc1'>OC1</option>
   <option value="eu1" id="eu1" name='eu1'>eu1</option>
