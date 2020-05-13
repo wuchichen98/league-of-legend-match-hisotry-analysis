@@ -1,26 +1,28 @@
 <?php
 session_start();
 require './vendor/autoload.php';
+
+use Aws\S3\S3Client;
+use Aws\S3\Exception\S3Exception;
 include_once('./php-riot-api.php');
 include_once('./FileSystemCache.php');
 include_once('functions/RIOTfunc.php');
 include_once('functions/dynamodb.php');
-include_once('tool.php');
-index_top_module('View Match');
 
 
 $getTb =getTable('MatchingDetails');
+// preview($getTb);
 $x= calcRates($getTb);
-//preview($getTb);
+changeCsv($getTb);
 
 // for($i= 0; $i<count($getTb); $i++){
 //     if($getTb[$i]['Win']=='Win'){
 //         $count ++;
 //     }
 // }
-//preview($getTb);
+print_r($getTb);
 echo "Win Rate of top 10 matches is: ", $x,"%";
-//preview(getTable('MatchingDetails'));
+// preview(getTable('MatchingDetails'));
 // echo"------------------------------";
 // preview(getTable('userinfo'));
 
@@ -36,10 +38,40 @@ function calcRates($tblength){
     
 }
 
-?>
-<body>
+function changeCsv($table){
+    $file = 'MatchHistory.csv';
+    $handle = fopen($file, 'w');
+    for($i= 0; $i<count($table); $i++){      
+        fputcsv($handle,$table[$i]);
+    }
+    fclose($handle);
+}
+//preview($api->getMatch(302917025));
 
 
+$bucket = 'csvfiledownload';
+$keyname = 'MatchHistory.csv';
+$pathToFile = 'C:/xampp/htdocs/a2test-ec2/MatchHistory.csv';
+                        
+$s3 = new S3Client([
+    'version' => 'latest',
+    'region'  => 'us-east-1'
+]);
 
+try {
 
-</body>
+$result = $s3->putObject(array(
+    'Bucket'     => $bucket,
+    'Key'        => $keyname,
+    'SourceFile' => $pathToFile,
+    'ACL'        => 'public-read'
+));
+$url = $s3->getObjectUrl($bucket, $keyname);
+
+    // Print the URL to the object.
+    echo $result['ObjectURL'] . PHP_EOL;
+    echo $url;
+} 
+catch (S3Exception $e) {
+    echo $e->getMessage() . PHP_EOL;
+}
