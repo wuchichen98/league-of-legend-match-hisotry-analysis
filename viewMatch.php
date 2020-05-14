@@ -12,24 +12,10 @@ include_once('tool.php');
 
 
 index_top_module('viewMatch');
-
+echo "The current user you are checking is ".$_SESSION["username"];
 $getTb =getTable('MatchingDetails');
-// preview($getTb);
 $x= calcRates($getTb);
 changeCsv($getTb);
-
-// for($i= 0; $i<count($getTb); $i++){
-//     if($getTb[$i]['Win']=='Win'){
-//         $count ++;
-//     }
-// }
-
-// print_r($getTb);
-// echo "Win Rate of top 10 matches is: ", $x,"%";
-
-// preview(getTable('MatchingDetails'));
-// echo"------------------------------";
-// preview(getTable('userinfo'));
 
 
 function calcRates($tblength){
@@ -51,7 +37,6 @@ function changeCsv($table){
     }
     fclose($handle);
 }
-//preview($api->getMatch(302917025));
 
 
 $bucket = 'csvfiledownload';
@@ -73,9 +58,6 @@ $result = $s3->putObject(array(
 ));
 $url = $s3->getObjectUrl($bucket, $keyname);
 
-    // Print the URL to the object.
-    // echo $result['ObjectURL'] . PHP_EOL;
-    // echo $url;
 } 
 catch (S3Exception $e) {
     echo $e->getMessage() . PHP_EOL;
