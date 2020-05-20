@@ -57,13 +57,6 @@ $result = $s3->putObject(array(
     'ACL'        => 'public-read'
 ));
 $url = $s3->getObjectUrl($bucket, $keyname);
-<<<<<<< HEAD
-    // Print the URL to the object.
-    echo $result['ObjectURL'] . PHP_EOL;
-    echo $url;
-=======
-
->>>>>>> 97a302dab3e816c4dfefcbffc7550c425a5d686b
 } 
 catch (S3Exception $e) {
     echo $e->getMessage() . PHP_EOL;
