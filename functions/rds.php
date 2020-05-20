@@ -2,7 +2,7 @@
 
 // require_once('testing.php');
 
-// require_once('../vendor/autoload.php');
+require_once('./vendor/autoload.php');
 
 use Aws\Rds\RdsClient;
 
@@ -15,8 +15,8 @@ use Aws\Rds\RdsClient;
 //admin jc2548461
 define("HOST", "cloudtest.cciz8vg9jp0f.us-east-1.rds.amazonaws.com");
 define("DBUSER", "root");
-define("PASS", "123456789");
-define("DB", "cloudtest");
+define("PASS", "Chen199809130");
+define("DB", "user");
 define("PORT", "3306");
 
 $link=mysqli_connect(HOST,DBUSER,PASS,DB,PORT); 

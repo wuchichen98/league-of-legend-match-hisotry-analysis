@@ -51,7 +51,7 @@ function changeCsv($table){
 
 $bucket = 'csvfiledownload';
 $keyname = 'MatchHistory.csv';
-$pathToFile = 'C:/xampp/htdocs/a2test-ec2/MatchHistory.csv';
+$pathToFile = 'C:/xampp/htdocs/a2test/MatchHistory.csv';
                         
 $s3 = new S3Client([
     'version' => 'latest',
@@ -67,7 +67,6 @@ $result = $s3->putObject(array(
     'ACL'        => 'public-read'
 ));
 $url = $s3->getObjectUrl($bucket, $keyname);
-
     // Print the URL to the object.
     echo $result['ObjectURL'] . PHP_EOL;
     echo $url;

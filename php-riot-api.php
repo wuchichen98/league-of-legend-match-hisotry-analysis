@@ -12,7 +12,7 @@ class riotapi {
 	const API_URL_SUMMONER_3 = 'https://{platform}.api.riotgames.com/lol/summoner/v4/';
 
    // $APIK = 'RGAPI-ab15e94f-d1aa-4324-a939-97b923960f52';
-	const API_KEY = 'RGAPI-3ab16131-36bd-4c9b-9bb8-f77e96e50bef';
+	const API_KEY = 'RGAPI-58c34015-3bed-46d7-a59f-f6947e4fb6e8';
 
 	// Rate limit for 10 minutes
 	const LONG_LIMIT_INTERVAL = 600;
