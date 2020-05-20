@@ -223,7 +223,7 @@ background:#3594D2;
 /* champion list css */
 div.MatchHistory
 {
-  height: 97px;
+  height: 197px;
   width: 689px;
   border: #525252;
   border-style: solid;
@@ -258,10 +258,4 @@ div.win
 div.image
 {
   display: inline-block;
-}
-
-img{
-  border-radius: 1px;
-  width:40px;
-  height:40px;
 }
