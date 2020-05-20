@@ -41,11 +41,7 @@ function changeCsv($table){
 
 $bucket = 'csvfiledownload';
 $keyname = 'MatchHistory.csv';
-<<<<<<< HEAD
-$pathToFile = 'C:/xampp/htdocs/a2test/MatchHistory.csv';
-=======
 $pathToFile = 'C:/xampp/htdocs/a2test-CSS/MatchHistory.csv';
->>>>>>> 97a302dab3e816c4dfefcbffc7550c425a5d686b
                         
 $s3 = new S3Client([
     'version' => 'latest',
