@@ -221,3 +221,47 @@ background:#3594D2;
 
 
 /* champion list css */
+div.MatchHistory
+{
+  height: 97px;
+  width: 689px;
+  border: #525252;
+  border-style: solid;
+  border-width: 1px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.kda
+{
+  display: inline-block;
+  width:20%;
+  height:20%;
+  margin-left: 300px;
+}
+
+div.prole
+{
+  display: inline-block;
+  width:20%;
+  height:20%;
+  margin-top: 10px;
+}
+
+div.win
+{
+  display: inline-block;
+  width:20%;
+  height:20%;
+}
+
+div.image
+{
+  display: inline-block;
+}
+
+img{
+  border-radius: 1px;
+  width:40px;
+  height:40px;
+}

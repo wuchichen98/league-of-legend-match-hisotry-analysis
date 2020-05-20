@@ -1,30 +1,21 @@
+<!DOCTYPE html>
 <?php
 session_start();
 require './vendor/autoload.php';
-
 use Aws\S3\S3Client;
 use Aws\S3\Exception\S3Exception;
 include_once('./php-riot-api.php');
 include_once('./FileSystemCache.php');
 include_once('functions/RIOTfunc.php');
 include_once('functions/dynamodb.php');
+include_once('tool.php');
 
 
+index_top_module('viewMatch');
+echo "The current user you are checking is ".$_SESSION["username"];
 $getTb =getTable('MatchingDetails');
-// preview($getTb);
 $x= calcRates($getTb);
 changeCsv($getTb);
-
-// for($i= 0; $i<count($getTb); $i++){
-//     if($getTb[$i]['Win']=='Win'){
-//         $count ++;
-//     }
-// }
-print_r($getTb);
-echo "Win Rate of top 10 matches is: ", $x,"%";
-// preview(getTable('MatchingDetails'));
-// echo"------------------------------";
-// preview(getTable('userinfo'));
 
 
 function calcRates($tblength){
@@ -46,12 +37,15 @@ function changeCsv($table){
     }
     fclose($handle);
 }
-//preview($api->getMatch(302917025));
 
 
 $bucket = 'csvfiledownload';
 $keyname = 'MatchHistory.csv';
+<<<<<<< HEAD
 $pathToFile = 'C:/xampp/htdocs/a2test/MatchHistory.csv';
+=======
+$pathToFile = 'C:/xampp/htdocs/a2test-CSS/MatchHistory.csv';
+>>>>>>> 97a302dab3e816c4dfefcbffc7550c425a5d686b
                         
 $s3 = new S3Client([
     'version' => 'latest',
@@ -67,10 +61,58 @@ $result = $s3->putObject(array(
     'ACL'        => 'public-read'
 ));
 $url = $s3->getObjectUrl($bucket, $keyname);
+<<<<<<< HEAD
     // Print the URL to the object.
     echo $result['ObjectURL'] . PHP_EOL;
     echo $url;
+=======
+
+>>>>>>> 97a302dab3e816c4dfefcbffc7550c425a5d686b
 } 
 catch (S3Exception $e) {
     echo $e->getMessage() . PHP_EOL;
 }
+
+function changeToHtml($table){
+    for($i= 0; $i<count($table); $i++){    
+        $array = $table[$i];  
+        $string1 = "champion";
+        $string2 = "Prole";
+        $string3 = "Win";
+        $string4 = "kill";
+        if($array[$string3] == 'Win')
+        {
+            echo "<div class='MatchHistory' style='background-color:cyan'>";
+        }
+        else
+        {
+            echo "<div class='MatchHistory' style='background-color:tomato'>";
+        }
+        echo "<div class='prole'> $array[$string2] </div>";
+        echo "<div class='win'> $array[$string3] </div>";
+        echo "<div class='kda'> $array[$string4] </div>";
+
+        $pathToChampionFile = file_get_contents("champions.json");
+        $championTable = json_decode($pathToChampionFile);
+        for($a= 0; $a<count($championTable); $a++)
+        {     
+            $championTable[$a] = get_object_vars($championTable[$a]);
+            if($championTable[$a]['key'] == $array[$string1])
+            {
+                $icon = "icon";
+                echo '<div class="image"> <img src="'.$championTable[$a][$icon].'"> </div>';
+            }
+        }
+        echo "</div>";
+    } 
+}
+
+changeToHtml($getTb); 
+echo "Win Rate of top 10 matches is: ", $x,"%"; 
+echo "<br>";
+echo '<a href="'.$url.'">Download the match file</a>';
+?>
+
+</main>
+</body>
+</html>
