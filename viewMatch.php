@@ -12,32 +12,9 @@ include_once('tool.php');
 
 
 index_top_module('viewMatch');
-echo "The current user you are checking is ".$_SESSION["username"];
 $getTb =getTable('MatchingDetails');
 $x= calcRates($getTb);
 changeCsv($getTb);
-
-
-function calcRates($tblength){
-    $count =0;
-    for($i= 0; $i<count($tblength); $i++){
-        if($tblength[$i]['Win']=='Win'){
-            $count ++;
-        }
-    }
-    return $count/count($tblength)*100;
-    
-}
-
-function changeCsv($table){
-    $file = 'MatchHistory.csv';
-    $handle = fopen($file, 'w');
-    for($i= 0; $i<count($table); $i++){      
-        fputcsv($handle,$table[$i]);
-    }
-    fclose($handle);
-}
-
 
 $bucket = 'csvfiledownload';
 $keyname = 'MatchHistory.csv';
@@ -62,7 +39,39 @@ catch (S3Exception $e) {
     echo $e->getMessage() . PHP_EOL;
 }
 
-function changeToHtml($table){
+
+
+changeToHtml($getTb,$x,$url); 
+
+
+function calcRates($tblength){
+    $count =0;
+    for($i= 0; $i<count($tblength); $i++){
+        if($tblength[$i]['Win']=='Win'){
+            $count ++;
+        }
+    }
+    return $count/count($tblength)*100;
+    
+}
+
+function changeCsv($table){
+    $file = 'MatchHistory.csv';
+    $handle = fopen($file, 'w');
+    for($i= 0; $i<count($table); $i++){      
+        fputcsv($handle,$table[$i]);
+    }
+    fclose($handle);
+}
+
+function changeToHtml($table,$winRate,$csvUrl){
+    echo "<div class='playerStatus' style='background-color:lightblue'>";
+    echo "<div class='userName'> Welcome! <br> <span class='username'> ".$_SESSION["username"] ."</span> </div>";
+    echo "<div class='halves-circle' style='".colorGet($table)."'>";
+    echo "<span class='winRate'>$winRate% </span>"; 
+    echo "</div>";
+    echo '<a href="'.$csvUrl.'" class="csvUrl">Download the match file</a>';
+    echo "</div>";
     for($i= 0; $i<count($table); $i++){    
         $array = $table[$i];  
         $string1 = "champion";
@@ -89,17 +98,36 @@ function changeToHtml($table){
             if($championTable[$a]['key'] == $array[$string1])
             {
                 $icon = "icon";
-                echo '<div class="image"> <img src="'.$championTable[$a][$icon].'"> </div>';
+                echo '<div class="image"> <img class="icon" src="'.$championTable[$a][$icon].'"> </div>';
             }
         }
         echo "</div>";
     } 
 }
 
-changeToHtml($getTb); 
-echo "Win Rate of top 10 matches is: ", $x,"%"; 
-echo "<br>";
-echo '<a href="'.$url.'">Download the match file</a>';
+function colorGet($table){
+    $winMatch = 0;
+    $winString = "background-image:linear-gradient(";
+    for($i= 0; $i<count($table); $i++){
+        if($table[$i]['Win']=='Win'){
+            $winMatch++;
+        }
+    }
+    $winPercentage = 360 * ($winMatch/10);
+    if($winPercentage < 180)
+    {
+        $losePercentage = 180 - $winPercentage;
+        $winString .= $losePercentage . "deg, transparent 50%, red 50%), linear-gradient(";
+        $winString .= "180deg, transparent 50%, cyan 50%)";
+    }
+    else
+    {
+        $winString .= "180deg, transparent 50%, cyan 50%), linear-gradient(";
+        $leftWinPercentage = $winPercentage - 180;
+        $winString .= $leftWinPercentage . "deg, cyan 50%, transparent 50%)";
+    }
+    return $winString;
+}
 ?>
 
 </main>
