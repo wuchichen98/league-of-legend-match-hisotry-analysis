@@ -10,7 +10,6 @@ $result = [];
  curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
  curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 $a = curl_exec($curl);
-//print_r($a);
 $j = json_decode($a);
 foreach ($j as $item) {
     array_push($result,[
@@ -22,7 +21,6 @@ foreach ($j as $item) {
     ]);
 }
 curl_close($curl);
-// print_r($result);
 return $result;
 }
 

@@ -1,24 +1,6 @@
 <?php
 
 
-//  $api = new riotapi('oc1', new FileSystemCache('../cache/'));
-//  //preview($api->getMatch(302912924));
-
-//   $xx = getSummoner('zorenous');
-//   preview($xx);
-
-//  preview(calcWIn('UQ4qZDt-ca0QIS9Dh2_JojLT1n0_MomVd-STW1_hKRPn_6c'));
-
-// preview(calcWIn('AE7_NXmM3C6gxHft1gb-buRmpsyGGWXH2BdVzzQJo4qCWw'));
-//getSummonerByName();
-//preview($api->getMatch(302917025)['participants'][0]['spell2Id']);
-
-// $api=getApiByReg('oc1');
-//  $xx = getSummoner('sxra');
-//  preview($xx);
-
-
-
 function getApiByReg($string){
 
     $api = new riotapi($string, new FileSystemCache('../cache/'));
@@ -63,8 +45,6 @@ function calcWIn($string){
     );
   
   for ($i = 0; $i < 10; $i++) {
-    //  preview($x['matches'][$i]);
-      //preview($x['matches'][0]['gameId']);
 
       
       array_push($storeWinLoss[0], $x['matches'][$i]['gameId'] );
@@ -81,19 +61,11 @@ function calcWIn($string){
       array_push($storeWinLoss[8], $check[4][0]);
       array_push($storeWinLoss[9], $check[5][0]);
 
-
-    //   if(strcasecmp(checkWin($storeWinLoss[0][$i],$storeWinLoss[1][$i]), "Win") ){
-    //       array_push($storeWinLoss[2],'Win');
-    //   }else{
-    //       array_push($storeWinLoss[3],'fail');
-    //   }
   
       }
       return $storeWinLoss;
 }
 function checkWin($matchId,$champid,$api){
-    //$api = new riotapi('oc1', new FileSystemCache('cache/'));
-   //  global $api;
     $p= $api->getMatch($matchId);
     $stor = array
     (
@@ -122,12 +94,10 @@ function checkWin($matchId,$champid,$api){
       if($p['participants'][$l]['teamId']==100){
         $status = $p['teams'][0]['win'];
         array_push($stor[0],$status);
-       // return $status;
         }
         else{
             $status = $p['teams'][1]['win'];
             array_push($stor[0],$status);
-         //   return $status;
         }
     }
     }

@@ -3,13 +3,13 @@
 require_once('RIOTfunc.php');
 
 
-//require 'aws.phar';
+
 
 date_default_timezone_set('UTC');
 use Aws\DynamoDb\SessionHandler;
 use Aws\DynamoDb\Exception\DynamoDbException;
 use Aws\DynamoDb\Marshaler;
-//use Aws\DynamoDb\DynamoMetadata;
+
 
 
 $sdk = new Aws\Sdk([
@@ -21,14 +21,8 @@ $sdk = new Aws\Sdk([
 $dynamodb = $sdk->createDynamoDb();
 
 $marshaler = new Marshaler();
-  //$api = new riotapi('oc1', new FileSystemCache('../cache/'));
 
- // calcWinTb($api->getSummonerByName('slydeer')['accountId']);
-
-// $api = new riotapi('oc1', new FileSystemCache('../cache/'));
-// preview($api->getSummonerByName('slydeer'));
-// calcWinTb($api->getSummonerByName('slydeer')['accountId']);
-// //write in all the element passing userid
+//write in all the element passing userid
 function calcWinTb($accountId){
     global $dynamodb;
     global $marshaler;
@@ -84,9 +78,6 @@ try {
 
 
 //add userinfo tb
-//preview($api->getSummonerByName('slydeer')['name']);
-//adduserinfo($api->getSummonerByName('slydeer'));
-//$userId=$api->getSummonerByName('slydeer');
 function updateUserinfo($userId){
     global $dynamodb;
     global $marshaler;
@@ -132,61 +123,7 @@ try {
 
 
 
-// $paramss = [
-//     'TableName' => 'MatchingDetails',
-//     'KeySchema' => [
-//         [
-//             'AttributeName' => 'gameId',
-//             'KeyType' => 'HASH'  //Partition key
-//         ],
-//         [
-//             'AttributeName' => 'champion',
-//             'KeyType' => 'RANGE'  //Sort key
-//         ],
-//     ],
-//     'AttributeDefinitions' => [
-//         [
-//             'AttributeName' => 'gameId',
-//             'AttributeType' => 'N'
-//         ],
-//         [
-//             'AttributeName' => 'champion',
-//             'AttributeType' => 'N'
-//         ],
 
-  
-
-//     ],
-//     'ProvisionedThroughput' => [
-//         'ReadCapacityUnits' => 20,
-//         'WriteCapacityUnits' => 20
-//     ]
-// ];
-
-//create tables
-// try {
-//     $result = $dynamodb->createTable($paramss);
-//     echo 'Created table.  Status: ' . 
-//         $result['TableDescription']['TableStatus'] ."\n";
-
-// } catch (DynamoDbException $e) {
-//     echo "Unable to create table:\n";
-//     echo $e->getMessage() . "\n";
-// }
-
-
-
-
-// //read
-// try {
-//    // $result = $dynamodb->getItem($params);
-//    $result = $dynamodb->query($params);
-//     print_r($result);
-
-// } catch (DynamoDbException $e) {
-//     echo "Unable to get item:\n";
-//     echo $e->getMessage() . "\n";
-// }
 
 function getCommenttb($id,$comment,$name,$time){ 
     global $dynamodb;
@@ -237,9 +174,6 @@ try {
         foreach ($result['Items'] as $i) {
             $info[] = $marshaler->unmarshalItem($i);
             
-           // preview($info);
-            //echo $movie['gameId'].':'.$movie['champion'];
-            //echo "<br>"; 
         }
         return $info;
         if (isset($result['LastEvaluatedKey'])) {
@@ -256,12 +190,3 @@ try {
 }
 
 ?>
-
-<!-- 
-{
-    
-        "require": {
-            "aws/aws-sdk-php": "^3.11"
-        }
-    
-} -->
