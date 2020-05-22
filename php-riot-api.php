@@ -2,7 +2,6 @@
 
 
 class riotapi {
-	//https://oc1.api.riotgames.com/lol/platform/v3/champion-rotations
 	const API_URL_PLATFORM_3 = "https://{platform}.api.riotgames.com/lol/platform/v3/";
 	const API_URL_CHAMPION_MASTERY_3 = "https://{platform}.api.riotgames.com/lol/champion-mastery/v4/";
 	const API_URL_SPECTATOR_3 = 'https://{platform}.api.riotgames.com/lol/spectator/v4/';
@@ -11,8 +10,7 @@ class riotapi {
 	const API_URL_LEAGUE_3 = 'https://{platform}.api.riotgames.com/lol/league/v3/';
 	const API_URL_SUMMONER_3 = 'https://{platform}.api.riotgames.com/lol/summoner/v4/';
 
-   // $APIK = 'RGAPI-ab15e94f-d1aa-4324-a939-97b923960f52';
-	const API_KEY = 'RGAPI-9b7d4343-0bc8-4a3b-b351-b7d2fafa5f4e';
+	const API_KEY = 'RGAPI-0abdf1c9-1a4c-4698-bf30-50b95dda2913';
 
 	// Rate limit for 10 minutes
 	const LONG_LIMIT_INTERVAL = 600;
@@ -445,6 +443,7 @@ class riotapi {
 		return array_merge($results);
 	}
 	
+
 	//creates a full URL you can query on the API
 	private function format_url($call){
 		return str_replace('{platform}', $this->PLATFORM, $call);

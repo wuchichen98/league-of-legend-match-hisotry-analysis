@@ -13,10 +13,7 @@ class FileSystemCache implements CacheInterface {
 	 */
 	public function __construct($directory)
 	{
-		$this->directory = trim($directory, '/\\') . '/';
 
-		if ( ! file_exists($this->directory))
-			mkdir($this->directory, 0777, true);
 	}
 
 	/**
@@ -56,7 +53,7 @@ class FileSystemCache implements CacheInterface {
 	 */
 	public function put($key, $data, $ttl = 0)
 	{
-		$this->store($key, $data, $ttl, time());
+		
 	}
 
 	private function load($key)
@@ -77,12 +74,12 @@ class FileSystemCache implements CacheInterface {
 
 	private function getPath($key)
 	{
-		return $this->directory . $this->hash($key);
+		
 	}
 
 	private function expired($entry)
 	{
-		return $entry === null || time() >= ($entry->createdAt + $entry->ttl);
+		
 	}
 
 	private function hash($key)
