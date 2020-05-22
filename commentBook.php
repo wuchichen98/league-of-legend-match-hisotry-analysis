@@ -19,16 +19,7 @@ if (array_key_exists('content', $_POST) && $_SESSION['fname']!=null) {
   echo "<meta http-equiv='refresh' content='0'>";
 }
 
-// else {
-//   echo 'Please login before comment';
-//   echo '<script>window.location.href="./login.php"</script>';
-// }
 
-//could be
-//session_destroy();
-
-
-// print_r($info);
 
 ?>
 <div class="continer" >
@@ -39,8 +30,6 @@ if (array_key_exists('content', $_POST) && $_SESSION['fname']!=null) {
   <?php 
  
   for($i=count($info)-1; $i>=0; $i--){
-    // echo $info[$i]['name'];
-    // echo $info[$i]['comment'];
     echo '
       <div class="panel">
         <div class="panel-head" style="background-color: rgb(223,240,216)">
