@@ -18,7 +18,7 @@ changeCsv($getTb);
 
 $bucket = 'csvfiledownload';
 $keyname = 'MatchHistory.csv';
-$pathToFile = 'C:/xampp/htdocs/a2test-CSS/MatchHistory.csv';
+$pathToFile = 'C:/xampp/htdocs/CCA2-s3716792-s3695116-test1/MatchHistory.csv';
                         
 $s3 = new S3Client([
     'version' => 'latest',
